@@ -1,3 +1,4 @@
+<img src="https://i.imgur.com/rhSGPbb.png" height="200px" />
 # Spry
 [![GitHub](https://img.shields.io/github/stars/Miserlou/Spry?style=social)](https://github.com/Miserlou/Spry)
 [![Hex.pm](https://img.shields.io/hexpm/v/spry.svg)](https://hex.pm/packages/spry)
