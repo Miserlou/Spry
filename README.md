@@ -40,6 +40,7 @@ When you `continue()`, `spry` will then resume all of the processes it suspended
 
 - Test in multi-node (Horde) environment
 - Figure out how to bypass that goddamn `Allow?` interrogation.
+- Allow argument to supply list of names/pids to omit
 
 ## License
 
