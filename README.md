@@ -8,7 +8,7 @@
 
 Spry was born out of annoyance at the state of debugging Elixir when lots of processes are interacting - a `pry` session would be interrupted and messed up by timeouts and other processes spewing garbage into the console, particularly for LiveView applications with background processes.
 
-Spry works by suspended every other process it can before `pry`ing, then resuming those processes once the IEX session is over. For example, in a LiveView application, if another client requests a page while a `spry` session is open, the page won't render until the session is over.
+Spry works by suspending every other process it can before `pry`ing, then resuming those processes once the IEX session is over. For example, in a LiveView application, if another client requests a page while a `spry` session is open, the page won't render until the session is over.
 
 ## Status
 Alpha! This project is in development. It's a debugging tool and shouldn't be used in production anyway.
