@@ -20,7 +20,7 @@ The package can be installed by adding `spry` to your list of dependencies in `m
 ```elixir
 def deps do
   [
-    {:spry, "~> 0.2.0"}
+    {:spry, "~> 0.2.1"}
   ]
 end
 ```
@@ -41,9 +41,9 @@ However, you probably don't want to use it this way because the context will be 
 ```elixir
 require IEx
 require Spry
-Spry.suspend()
+suspended = Spry.suspend()
 IEx.pry()
-Spry.resume()
+Spry.resume(suspended)
 ```
 
 If there are things you want to exclude from suspension, can exclude them by name or PID:
