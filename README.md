@@ -20,7 +20,7 @@ The package can be installed by adding `spry` to your list of dependencies in `m
 ```elixir
 def deps do
   [
-    {:spry, "~> 0.1.0"}
+    {:spry, "~> 0.2.0"}
   ]
 end
 ```
@@ -35,6 +35,13 @@ Spry.spry()
 ```
 
 When you `continue()`, `spry` will then resume all of the processes it suspended.
+
+If there are things you want to exclude from suspension, can exclude them by name or PID:
+
+```elixir
+require Spry
+Spry.spry(%{exclude: ["important_process", other_important_process_pid]})
+```
 
 ## TODO
 

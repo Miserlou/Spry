@@ -1,10 +1,14 @@
+require IEx;
+
 defmodule Spry do
   @moduledoc """
   Documentation for `Spry`.
   """
+  def spry(options \\ []) do
+    default = [exclude: []]
+    options = Keyword.merge(default, options)
+    exclude = options[:exclude]
 
-  defp spry() do
-    require IEx;
     IEx.configure(inspect: [limit: :infinity])
 
     all_pids = :application.info[:running]
@@ -27,6 +31,10 @@ defmodule Spry do
         # Don't suspend ourself
         pid == self() ->
           suspended
+
+        pid in exclude or name in exclude ->
+          suspended
+
         true ->
           :erlang.suspend_process(pid)
           suspended ++ [pid]
