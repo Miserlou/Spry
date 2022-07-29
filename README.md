@@ -4,7 +4,7 @@
 [![GitHub](https://img.shields.io/github/stars/Miserlou/Spry?style=social)](https://github.com/Miserlou/Spry)
 [![Hex.pm](https://img.shields.io/hexpm/v/spry.svg)](https://hex.pm/packages/spry)
 
-**Spry** is a (slightly) beefed up version of Elixir's `IEx.pry()`.
+**Spry** is a helper for Elixir's `IEx.pry()`.
 
 Spry was born out of annoyance at the state of debugging Elixir when lots of processes are interacting - a `pry` session would be interrupted and messed up by timeouts and other processes spewing garbage into the console, particularly for LiveView applications with background processes.
 
@@ -27,6 +27,8 @@ end
 
 ## Usage
 
+_Note: If using Phoenix, you must start your server with `iex -S mix phx.server`_
+
 Usage is simple:
 
 ```elixir
@@ -34,20 +36,27 @@ require Spry
 Spry.spry()
 ```
 
-When you `continue()`, `spry` will then resume all of the processes it suspended.
+However, you probably don't want to use it this way because the context will be wrong. Instead, do this:
+
+```elixir
+require IEx
+require Spry
+Spry.suspend()
+IEx.pry()
+Spry.resume()
+```
 
 If there are things you want to exclude from suspension, can exclude them by name or PID:
 
 ```elixir
 require Spry
-Spry.spry(%{exclude: ["important_process", other_important_process_pid]})
+Spry.suspend(%{exclude: ["important_process", other_important_process_pid]})
 ```
 
 ## TODO
 
 - Test in multi-node (Horde) environment
 - Figure out how to bypass that goddamn `Allow?` interrogation.
-- Allow argument to supply list of names/pids to omit
 
 ## License
 

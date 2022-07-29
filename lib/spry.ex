@@ -4,12 +4,10 @@ defmodule Spry do
   @moduledoc """
   Documentation for `Spry`.
   """
-  def spry(options \\ []) do
+  def suspend(options \\ []) do
     default = [exclude: []]
     options = Keyword.merge(default, options)
     exclude = options[:exclude]
-
-    IEx.configure(inspect: [limit: :infinity])
 
     all_pids = :application.info[:running]
     suspended = Enum.reduce all_pids, [], fn process, suspended ->
@@ -42,11 +40,19 @@ defmodule Spry do
       suspended
     end
 
-    IEx.pry()
+    suspended
+  end
 
+  def resume(suspended) do
     Enum.map suspended, fn pid ->
       :erlang.resume_process(pid)
     end
-
   end
+
+  def spry(options \\ []) do
+    suspended = Spry.suspend(options)
+    require IEx; IEx.pry()
+    Spry.resume(suspended)
+  end
+
 end
